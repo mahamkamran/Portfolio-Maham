@@ -255,14 +255,17 @@ p { color: rgb(70,70,70); }
   line-height: 1.1;
 }
 
-/* Positions for 720px canvas */
-.node-cobionix{ left: 10px;  top: 0px; }
-.node-uw      { left: 190px; top: 0px; }
-.node-abyss   { left: 370px; top: 0px; }
-.node-bahria  { left: 550px; top: 0px; }
-.node-apple   { left: 100px; top: 140px; }
-.node-keysight{ left: 280px; top: 140px; }
-.node-rogers  { left: 460px; top: 140px; }
+/* Positions for 900px canvas */
+/* Top row: NIERL - Lakehead - Abyss - Air Uni */
+.node-nierl { left: 15px;  top: 0px; }
+.node-uw    { left: 195px; top: 0px; }
+.node-abyss { left: 420px; top: 0px; }
+.node-Air   { left: 645px; top: 0px; }
+
+/* Bottom row: Case Western under Lakehead, Shock & OGDCL under Air Uni */
+.node-case  { left: 195px; top: 160px; }
+.node-shock { left: 555px; top: 180px; }
+.node-ogdcl { left: 735px; top: 180px; }
 
 /* ===================== ABOUT ===================== */
 #about{ padding: 0.5rem 0 1.2rem; }
