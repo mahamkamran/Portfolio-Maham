@@ -1015,6 +1015,13 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
   color: var(--text-muted);
 }
 .project-points li{ margin-bottom: 0.1rem; }
+.project-points a{
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.project-points a:hover{ color: var(--accent-strong); }
 
 /* About body copy emphasis */
 .about-text strong{ color: var(--text); font-weight: 600; }
