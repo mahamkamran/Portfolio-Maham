@@ -441,14 +441,29 @@ p { color: var(--text-muted); }
   line-height: 1.15;
 }
 
-/* Branch variant: stem drops from the LAST top node into the two nodes below it */
-.tree-bottom--end{ justify-content: flex-end; }
-.tree-branch--end::before{ left: 91%; }
-.tree-branch--end::after{ left: 69%; right: 9%; }
-.tree-branch--end .branch-left{ left: 69%; }
-.tree-branch--end .branch-right{ left: 91%; }
-body.dark-mode .tree-branch--end::before,
-body.dark-mode .tree-branch--end::after{ background: rgba(255,255,255,0.18); }
+/* Branch variant: Lakehead (top row, 2nd node) drops straight into Case Western;
+   Air University (last node) splits into Shock and Stars + OGDCL.
+   Top row = 4 nodes @18% with space-between -> node centers at 9%, 36.33%, 63.67%, 91%. */
+.tree-branch--split::before{ left: 91%; }
+.tree-branch--split::after{ left: 69%; right: 9%; }
+.tree-branch--split .branch-left{ left: 69%; }
+.tree-branch--split .branch-right{ left: 91%; }
+.stem-lakehead{
+  position:absolute;
+  left: 36.33%; top: 0; height: 100%;
+  width: 2px;
+  background: rgba(0,0,0,0.30);
+  transform: translateX(-50%);
+}
+body.dark-mode .tree-branch--split::before,
+body.dark-mode .tree-branch--split::after,
+body.dark-mode .stem-lakehead{ background: rgba(255,255,255,0.18); }
+
+/* Bottom row: Case Western under Lakehead (center 36.33%); Shock under 69%; OGDCL under 91% */
+.tree-bottom--split{ justify-content: flex-start; gap: 0; }
+.tree-bottom--split .node-case{ margin-left: 27.33%; }
+.tree-bottom--split .node-shock{ margin-left: 14.67%; }
+.tree-bottom--split .node-ogdcl{ margin-left: 4%; }
 
 /* ===================== ABOUT ===================== */
 #about{ padding: 0.5rem 0 1.2rem; }
