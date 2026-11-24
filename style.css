@@ -617,17 +617,15 @@ body.dark-mode .stem-lakehead{ background: rgba(255,255,255,0.18); }
 }
 
 /* inner -> outer, around the "ML & Robotics" center: Bahria, Abyss, (UW+Rogers+Keysight), Cobionix, Apple */
-.orbit-1{ width:26%;  height:26%;  animation: spin-cw  14s linear infinite; }
-.orbit-2{ width:44%;  height:44%;  animation: spin-ccw 20s linear infinite; }
-.orbit-3{ width:62%;  height:62%;  animation: spin-cw  28s linear infinite; }
-.orbit-4{ width:82%;  height:82%;  animation: spin-ccw 36s linear infinite; }
-.orbit-5{ width:100%; height:100%; animation: spin-cw  44s linear infinite; }
+.orbit-1{ width:28%;  height:28%;  animation: spin-cw  16s linear infinite; }
+.orbit-2{ width:52%;  height:52%;  animation: spin-ccw 24s linear infinite; }
+.orbit-3{ width:76%;  height:76%;  animation: spin-cw  32s linear infinite; }
+.orbit-4{ width:100%; height:100%; animation: spin-ccw 40s linear infinite; }
 
-.orbit-1 .planet{ animation: spin-ccw 14s linear infinite; }
-.orbit-2 .planet{ animation: spin-cw  20s linear infinite; }
-.orbit-3 .planet{ animation: spin-ccw 28s linear infinite; }
-.orbit-4 .planet{ animation: spin-cw  36s linear infinite; }
-.orbit-5 .planet{ animation: spin-ccw 44s linear infinite; }
+.orbit-1 .planet{ animation: spin-ccw 16s linear infinite; }
+.orbit-2 .planet{ animation: spin-cw  24s linear infinite; }
+.orbit-3 .planet{ animation: spin-ccw 32s linear infinite; }
+.orbit-4 .planet{ animation: spin-cw  40s linear infinite; }
 
 @keyframes spin-cw{
   from{ transform: translate(-50%,-50%) rotate(0deg); }
@@ -666,9 +664,9 @@ body.dark-mode .stem-lakehead{ background: rgba(255,255,255,0.18); }
 /* two planets sharing an orbit sit on opposite sides of the ring */
 .planet-opposite{ top:100%; }
 
-/* three planets sharing orbit-3 (UW, Rogers, Keysight), spaced evenly around the ring */
-.orbit-3 .planet-b{ top:75%; left:93%; }
-.orbit-3 .planet-c{ top:75%; left:7%; }
+/* three planets sharing an orbit (first at the top) sit 120 degrees apart */
+.planet-b{ top:75%; left:93.3%; }
+.planet-c{ top:75%; left:6.7%; }
 
 /* pause the motion on hover so logos are easy to click */
 .solar-system:hover .orbit,
@@ -1080,8 +1078,9 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
   .orbit-1 .planet{ transform: rotate(-38deg) !important; }
   .orbit-2{ transform: translate(-50%,-50%) rotate(-42deg) !important; }
   .orbit-2 .planet{ transform: rotate(42deg) !important; }
-  .orbit-4{ transform: translate(-50%,-50%) rotate(95deg) !important; }
-  .orbit-4 .planet{ transform: rotate(-95deg) !important; }
-  .orbit-5{ transform: translate(-50%,-50%) rotate(-100deg) !important; }
-  .orbit-5 .planet{ transform: rotate(100deg) !important; }
+  .orbit-3{ transform: translate(-50%,-50%) rotate(95deg) !important; }
+  .orbit-3 .planet{ transform: rotate(-95deg) !important; }
+  .orbit-4{ transform: translate(-50%,-50%) rotate(-100deg) !important; }
+  .orbit-4 .planet{ transform: rotate(100deg) !important; }
+}
 }
