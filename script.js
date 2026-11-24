@@ -36,47 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") toggleMenu(true);
   });
 
-  /* ===================== THEME TOGGLE ===================== */
-  const themeButtons = Array.from(document.querySelectorAll(".theme-toggle"));
-  const themeKey = "preferredTheme";
-
-  const getSavedTheme = () => localStorage.getItem(themeKey);
-  const getCurrentTheme = () => document.body.classList.contains("dark-mode") ? "dark" : "light";
-
-  const updateThemeButtons = (theme) => {
-    themeButtons.forEach(button => {
-      const icon = theme === "dark" ? "☀️" : "🌙";
-      const label = theme === "dark" ? "Light" : "Dark";
-      button.querySelector(".theme-toggle__icon").textContent = icon;
-      button.querySelector(".theme-toggle__label").textContent = label;
-      button.setAttribute("aria-label", `Switch to ${label} mode`);
-    });
-  };
-
-  const applyTheme = (theme) => {
-    document.body.classList.toggle("dark-mode", theme === "dark");
-    updateThemeButtons(theme);
-  };
-
-  const setTheme = (theme) => {
-    applyTheme(theme);
-    localStorage.setItem(themeKey, theme);
-  };
-
-  const initTheme = () => {
-    const savedTheme = getSavedTheme();
-    const theme = savedTheme || "light"; // ✅ always light by default for first-time visitors
-    applyTheme(theme);
-  };
-
-  initTheme();
-
-  themeButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      const newTheme = getCurrentTheme() === "dark" ? "light" : "dark";
-      setTheme(newTheme);
-    });
-  });
+  /* ===================== LIGHT MODE ONLY ===================== */
+  document.body.classList.remove("dark-mode");
+  try { localStorage.removeItem("preferredTheme"); } catch (e) {}
 });
 
 
