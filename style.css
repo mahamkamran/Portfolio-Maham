@@ -569,7 +569,7 @@ body.dark-mode .tree-branch--end::after{ background: rgba(255,255,255,0.18); }
 }
 
 /* ===================== EXPERIENCE: SOLAR SYSTEM ===================== */
-#experience, #journey{ padding: 0.5rem 0 2rem; }
+#journey{ padding: 0.5rem 0 2rem; }
 
 .solar-system{
   position: relative;
@@ -868,7 +868,7 @@ button:focus-visible,
 .nav-links a:hover::after{ transform: scaleX(1); }
 
 /* Generous, consistent vertical rhythm between major sections */
-#about, #research, #experience, #journey, #contact{ padding-top: 2.4rem; padding-bottom: 2.4rem; }
+#about, #research, #journey, #contact{ padding-top: 2.4rem; padding-bottom: 2.4rem; }
 
 /* Hero focus/expertise chips */
 .hero-focus{
@@ -1016,7 +1016,7 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
     page-break-inside: avoid;
   }
   h1, h2, h3{ break-after: avoid; page-break-after: avoid; }
-  #about, #research, #experience, #journey, #contact{ padding-top:1rem !important; padding-bottom:1rem !important; }
+  #about, #research, #journey, #contact{ padding-top:1rem !important; padding-bottom:1rem !important; }
 
   /* Keep hero media a sensible size on paper */
   .hero-photo{ max-width:240px !important; }
