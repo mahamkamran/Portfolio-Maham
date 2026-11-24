@@ -1,20 +1,116 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-tint: #f7f8fb;              /* subtle alternating section wash */
+  --surface: rgba(255,255,255,0.80);
+  --surface-strong: #ffffff;
+  --text: #0c0e14;
+  --text-muted: #434857;
+  --text-soft: #717784;
+  --border: rgba(12,14,20,0.09);
+  --border-strong: rgba(12,14,20,0.14);
+  --shadow: rgba(16,22,40,0.08);
+  --shadow-strong: rgba(16,22,40,0.14);
+  --hover-bg: rgba(12,14,20,0.04);
+
+  /* Monochrome: "accent" resolves to black (text color) in light mode */
+  --accent: #0c0e14;
+  --accent-strong: #000000;
+  --accent-soft: rgba(12,14,20,0.07);
+  --ring: rgba(12,14,20,0.40);
+
+  --font-display: "Roboto", system-ui, -apple-system, sans-serif;
+  --font-body: "Roboto", system-ui, -apple-system, sans-serif;
+
+  /* Consistent type scale used across the whole portfolio */
+  --fs-meta: 0.8rem;      /* eyebrows, dates, chips, buttons, captions */
+  --fs-body: 0.9rem;      /* all paragraph / descriptive text */
+  --fs-subhead: 1rem;     /* content sub-headings: project & institution titles */
+  --fs-lead: 1.05rem;     /* hero role line */
+}
 body {
-  font-family: "Poppins", sans-serif;
-  color: #111;
-  background: #fff;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden; /* IMPORTANT: prevents horizontal scroll on mobile */
+}
+body.dark-mode {
+  color-scheme: dark;
+  --bg: #07090f;
+  --bg-tint: #0b0e16;
+  --surface: rgba(17, 21, 31, 0.80);
+  --surface-strong: #11151f;
+  --text: #f4f5f8;
+  --text-muted: #c7cbd5;
+  --text-soft: #95a0b7;
+  --border: rgba(255,255,255,0.12);
+  --border-strong: rgba(255,255,255,0.16);
+  --shadow: rgba(0,0,0,0.28);
+  --shadow-strong: rgba(0,0,0,0.42);
+  --hover-bg: rgba(255,255,255,0.06);
+
+  /* Monochrome: "accent" resolves to white (text color) in dark mode */
+  --accent: #f4f5f8;
+  --accent-strong: #ffffff;
+  --accent-soft: rgba(255,255,255,0.12);
+  --ring: rgba(255,255,255,0.45);
+}
+
+body.dark-mode .tree-node{
+  background: var(--surface-strong) !important;
+  border-color: var(--border) !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.24) !important;
+}
+body.dark-mode .tree-node:hover{
+  box-shadow: 0 14px 30px rgba(0,0,0,0.30) !important;
+}
+body.dark-mode .tree-node span{
+  color: var(--text-soft) !important;
+}
+body.dark-mode .tree-top::before,
+body.dark-mode .tree-branch::before,
+body.dark-mode .tree-branch::after,
+body.dark-mode .branch-left,
+body.dark-mode .branch-right{
+  background: rgba(255,255,255,0.18) !important;
+}
+body.dark-mode .hero-photo{
+  border-color: rgba(255,255,255,0.12);
+}
+body.dark-mode .about-pic{
+  border-color: rgba(255,255,255,0.12);
+}
+body.dark-mode .menu-links{
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 
 img { max-width: 100%; height: auto; display: block; }
 
-a { color: #111; text-decoration: none; }
-a:hover { color: #555; }
+h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.015em; }
 
-p { color: rgb(70,70,70); }
+a { color: var(--text); text-decoration: none; }
+a:hover { color: var(--text-soft); }
+
+p { color: var(--text-muted); }
+
+/* Inline links within body copy get the accent + underline affordance */
+.about-text a,
+.project-desc a{
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.about-text a:hover,
+.project-desc a:hover{ color: var(--accent-strong); }
 
 .container{
   width: min(1180px, 92%);
@@ -37,15 +133,15 @@ p { color: rgb(70,70,70); }
 }
 
 .logo{
-  font-size: 1.3rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
 .nav-links{
   list-style:none;
   display:flex;
-  gap: 2rem;
-  font-size: 1rem;
+  gap: 1.7rem;
+  font-size: 0.88rem;
 }
 
 .nav-links a{
@@ -54,6 +150,47 @@ p { color: rgb(70,70,70); }
 
 .nav-links a:hover{
   border-bottom: 2px solid rgba(0,0,0,0.25);
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap: 1rem;
+}
+
+.theme-toggle{
+  display:flex;
+  align-items:center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+  min-height: 38px;
+}
+
+.theme-toggle:hover{
+  transform: translateY(-1px);
+  background: var(--hover-bg);
+}
+
+.theme-toggle__icon{
+  font-size: 1rem;
+}
+
+.theme-toggle--mobile{
+  display:none;
+}
+
+@media (max-width: 980px) {
+  .theme-toggle--mobile{
+    display:flex;
+  }
 }
 
 /* Hamburger */
@@ -74,17 +211,17 @@ p { color: rgb(70,70,70); }
   display:block;
   height: 2px;
   width: 100%;
-  background: #111;
+  background: var(--text);
 }
 
 .menu-links{
   position:absolute;
   right:0;
   top: 48px;
-  background:#fff;
-  border: 1px solid rgba(0,0,0,0.10);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px var(--shadow);
   display:none;
   min-width: 190px;
   overflow:hidden;
@@ -93,29 +230,36 @@ p { color: rgb(70,70,70); }
 .menu-links.open{ display:block; }
 .menu-links a{
   display:block;
-  padding: 0.95rem 1rem;
-  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
 }
-.menu-links a:hover{ background: rgba(0,0,0,0.04); }
+.menu-links a:hover{ background: var(--hover-bg); }
 
 /* ===================== TYPO ===================== */
 .section__text__p1{
+  font-family: var(--font-display);
   font-weight: 600;
-  color: #666;
-  margin-bottom: 0.4rem;
+  font-size: var(--fs-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.5rem;
 }
 
 .title{
-  font-size: 2.0rem;
-  line-height: 1.08;
+  font-size: clamp(1.65rem, 2.4vw + 0.6rem, 2.1rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
 }
 
 .section__text__p2{
-  font-size: 1.16rem;
-  color: #444;
-  margin-top: 0.8rem;
-  margin-bottom: 1rem;
+  font-size: var(--fs-lead);
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+  margin-bottom: 0.9rem;
 }
+
 
 .justify{ text-align: justify; }
 
@@ -126,9 +270,9 @@ p { color: rgb(70,70,70); }
 
 .hero-grid{
   display:grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 0.1rem;
-  align-items: right;
+  grid-template-columns: minmax(280px, 340px) 1fr;  /* ✅ photo column hugs the photo's actual size instead of leaving dead space */
+  gap: 2.5rem;                                       /* ✅ intentional breathing room instead of a giant empty gap */
+  align-items: start;
 }
 
 /* Nudge the entire right hero column slightly left */
@@ -146,7 +290,7 @@ p { color: rgb(70,70,70); }
   overflow:hidden;
   box-shadow: 0 16px 42px rgba(0,0,0,0.10);
   border: 1px solid rgba(0,0,0,0.10);
-  max-width: 360px;
+  max-width: 320px;
 }
 
 #socials-container{
@@ -172,67 +316,115 @@ p { color: rgb(70,70,70); }
 }
 
 .btn{
+  font-family: var(--font-display);
   font-weight: 600;
-  padding: 0.9rem 1.2rem;
+  letter-spacing: -0.01em;
+  padding: 0.85rem 1.5rem;
   border-radius: 999px;
   cursor:pointer;
-  border: 1px solid rgba(0,0,0,0.20);
-  transition: all 200ms ease;
-  background: #fff;
-  min-height: 44px; /* tap target */
+  border: 1px solid var(--border-strong);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+  background: var(--surface-strong);
+  color: var(--text);
+  min-height: 46px; /* tap target */
 }
+.btn:hover{ transform: translateY(-2px); }
 
 .btn-color-1{
-  background:#111;
-  color:#fff;
-  border-color:#111;
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 10px 24px -8px var(--accent);
 }
-.btn-color-1:hover{ background:#000; }
-.btn-color-2:hover{ background: rgba(0,0,0,0.05); }
+.btn-color-1:hover{
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  box-shadow: 0 14px 30px -8px var(--accent);
+}
+.btn-color-2{ background: var(--surface-strong); }
+.btn-color-2:hover{ background: var(--hover-bg); border-color: var(--text-soft); }
 
 /* ===================== HERO TREE ===================== */
 .logo-tree{
-  position: relative;
-  width: 720px;             /* ✅ fixed canvas so SVG + absolute nodes align */
-  max-width: 100%;          /* ✅ responsive on smaller screens */
-  height: 240px;
-  margin: 0.1rem 0 0 auto;  /* ✅ pushes the tree to the right */
+  width: min(720px, 100%);   /* ✅ larger footprint, gives each node room for its logo + date */
+  margin: 0.5rem 0 0 auto;
 }
 
-.tree-lines{
+.tree-row{
+  display:flex;
+  position:relative;
+}
+
+.tree-top{
+  justify-content: space-between;   /* even spacing; middle node (UW) lands exactly at center */
+}
+
+.tree-bottom{
+  justify-content: center;
+  gap: 4%;
+}
+
+/* Horizontal connector line running behind the top-row nodes */
+.tree-top::before{
+  content:"";
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
+  left: 9%; right: 9%;   /* 9% = half a node's width, so the line reaches each node's center */
+  top: 50%;
+  height: 2px;
+  background: rgba(0,0,0,0.30);
+  z-index: 0;
 }
 
-.tree-lines line{
-  stroke: rgba(0,0,0,0.35);
-  stroke-width: 2;
-  stroke-linecap: butt;
+/* Branch zone between the two rows: stem down from UW, splitting to Keysight + Rogers */
+.tree-branch{
+  position: relative;
+  height: 1.8rem;
 }
+.tree-branch::before{  /* vertical stem from UW's center down to the split point */
+  content:"";
+  position:absolute;
+  left: 50%; top: 0; height: 55%;
+  width: 2px;
+  background: rgba(0,0,0,0.30);
+  transform: translateX(-50%);
+}
+.tree-branch::after{   /* horizontal bridge at the split point */
+  content:"";
+  position:absolute;
+  left: 39%; right: 39%; top: 55%;
+  height: 2px;
+  background: rgba(0,0,0,0.30);
+}
+.branch-left, .branch-right{  /* two verticals dropping into Keysight and Rogers */
+  position:absolute;
+  top: 55%; height: 45%;
+  width: 2px;
+  background: rgba(0,0,0,0.30);
+}
+.branch-left{ left: 39%; }
+.branch-right{ left: 61%; }
 
 .tree-node{
-  position:absolute;
-  width: 150px;
-  height: 80px;
-  background:#fff;
-  border: 1px solid rgba(0,0,0,0.10);
+  position: relative;
+  z-index: 1;             /* sits above the connector lines */
+  width: 18%;
+  min-height: 5.6rem;      /* ✅ tall enough for logo + two-line date, no overflow */
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 22px var(--shadow);
   display:flex;
   flex-direction: column;
   align-items:center;
   justify-content:center;
-  gap: 8px;
-  padding: 10px;
+  gap: 6px;
+  padding: 10px 6px;
   transition: transform 160ms ease, box-shadow 160ms ease;
   text-align:center;
 }
 .tree-node:hover{
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+  box-shadow: 0 14px 30px var(--shadow);
 }
 
 .tree-node img{
@@ -241,31 +433,22 @@ p { color: rgb(70,70,70); }
   max-width: 85%;
   object-fit: contain;
 }
-
-/* Bigger Apple logo only */
-.node-apple img{
-  height: 40px;   /* was 28px globally */
-  max-width: 95%;
-}
-
+.tree-node img.logo-big{ height: 34px; }
 
 .tree-node span{
-  font-size: 0.88rem;
-  color:#555;
-  line-height: 1.1;
+  font-size: var(--fs-meta);
+  color: var(--text-soft);
+  line-height: 1.15;
 }
 
-/* Positions for 720px canvas with reduced gaps */
-/* Top row: NIERL - Lakehead - Abyss - Air Uni */
-.node-nierl { left: 10px;  top: 0px; }
-.node-uw    { left: 175px; top: 0px; }
-.node-abyss { left: 335px; top: 0px; }
-.node-Air   { left: 500px; top: 0px; }
-
-/* Bottom row: Case Western under Lakehead, Shock & OGDCL under Air Uni */
-.node-case  { left: 175px; top: 110px; }
-.node-shock { left: 450px; top: 140px; }
-.node-ogdcl { left: 615px; top: 140px; }
+/* Branch variant: stem drops from the LAST top node into the two nodes below it */
+.tree-bottom--end{ justify-content: flex-end; }
+.tree-branch--end::before{ left: 91%; }
+.tree-branch--end::after{ left: 69%; right: 9%; }
+.tree-branch--end .branch-left{ left: 69%; }
+.tree-branch--end .branch-right{ left: 91%; }
+body.dark-mode .tree-branch--end::before,
+body.dark-mode .tree-branch--end::after{ background: rgba(255,255,255,0.18); }
 
 /* ===================== ABOUT ===================== */
 #about{ padding: 0.5rem 0 1.2rem; }
@@ -278,22 +461,22 @@ p { color: rgb(70,70,70); }
 }
 
 .about-text{ flex: 1.2; }
-.about-text p{ margin-bottom: 1rem; line-height: 1.65; }
+.about-text p{ margin-bottom: 0.8rem; line-height: 1.55; font-size: var(--fs-body); }
 
 .about-image{ flex: 0.8; display:flex; justify-content:flex-end; }
 .about-pic{
-  width: min(420px, 100%);
-  border-radius: 18px;
-  border: 1px solid rgba(0,0,0,0.10);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  width: min(340px, 100%);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 26px var(--shadow);
 }
 
 /* ===================== EDUCATION / ACADEMIC BACKGROUND ===================== */
 .academic-heading{
-  margin-top: 1.0rem;
-  font-size: 1.0rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid rgba(0,0,0,0.12);
+  margin-top: 0.7rem;
+  font-size: var(--fs-subhead);
+  padding-bottom: 0.28rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .education-wrapper{
@@ -303,24 +486,24 @@ p { color: rgb(70,70,70); }
 
 .edu-box{
   display:flex;
-  gap: 1.2rem;
-  padding: 0.9rem 0;          /* tighter than 1.4rem */
+  gap: 0.9rem;
+  padding: 0.55rem 0;
   align-items:flex-start;
 }
 
 .edu-left{
-  width: 100px;
+  width: 72px;
   display:flex;
   flex-direction: column;     /* stack logo + timeline */
   align-items: center;        /* center under logo */
   justify-content: flex-start;
-  gap: 0.35rem;               /* spacing between logo and timeline */
+  gap: 0.25rem;               /* spacing between logo and timeline */
   flex: 0 0 auto;
 }
 
 .edu-logo{
-  width: 80px;
-  height: 80px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
@@ -330,37 +513,37 @@ p { color: rgb(70,70,70); }
 }
 
 .edu-title{
-  font-size: 1.0rem;
-  margin-bottom: 0.15rem;
-  line-height: 1.2;
+  font-size: var(--fs-subhead);
+  margin-bottom: 0.1rem;
+  line-height: 1.3;
 }
 
 .edu-degree{
-  font-size: 0.85rem;         /* readable */
-  color:#444;
+  font-size: var(--fs-body);
+  color: var(--text-muted);
   margin-bottom: 0.03rem;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .edu-detail{
-  font-size: 0.85rem;         /* readable */
+  font-size: var(--fs-body);
   margin-bottom: 0.03rem;     /* tight spacing between Thesis/CGPA */
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .edu-duration{
-  font-size: 0.85rem;
+  font-size: var(--fs-meta);
   margin-top: 0;              /* since it's now under logo */
-  color:#666;
+  color: var(--text-soft);
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 .edu-btn-row{
   display:flex;
-  gap: 0.6rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .edu-divider{
@@ -371,65 +554,156 @@ p { color: rgb(70,70,70); }
 /* Buttons inside education */
 .mini-btn{
   display:inline-block;
-  padding: 0.52rem 0.8rem;
+  padding: 0.34rem 0.75rem;
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,0.18);
   background:#fff;
+  color:#111;               /* ✅ always readable: this pill stays white in both themes */
   font-weight: 600;
-  font-size: 0.85rem;
-  min-height: 38px;
+  font-size: var(--fs-meta);
+  min-height: 30px;
 }
 .mini-btn:hover{
   background: rgba(0,0,0,0.05);
+  color:#111;
 }
 
 /* ===================== EXPERIENCE ===================== */
-#experience{ padding: 0.5rem 0 1.2rem; }
-.exp-wrapper{ margin-top: 1.2rem; }
+#experience{ padding: 0.5rem 0 2rem; }
+.exp-wrapper{ display:flex; flex-direction: column; gap: 0.4rem; margin-top: 1.2rem; }
+.exp-wrapper > hr{ display:none; }
 
 .exp-box{
-  display:flex;
-  gap: 1.7rem;
-  padding: 1.5rem 0;
-  align-items:flex-start;
+  display:grid;
+  grid-template-columns: 170px 1fr;
+  gap: 1.3rem;
+  align-items:start;
+  padding: 0.9rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, background 200ms ease;
 }
-
+.exp-box:hover{
+  border-color: var(--border);
+  background: var(--surface-strong);
+  box-shadow: 0 14px 34px -22px var(--shadow-strong);
+  transform: translateY(-2px);
+}
 .exp-left{
-  width: 190px;
   display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items:center;
   text-align:center;
-  gap: 0.35rem;
-  flex: 0 0 auto;
+  gap: 0.25rem;
+}
+.exp-logo{ width: 56px; height: 56px; object-fit: contain; }
+.exp-date, .exp-location{ font-size: var(--fs-meta); color: var(--text-soft); line-height: 1.3; }
+.exp-right{ min-width: 0; }
+.exp-role{
+  font-family: var(--font-display);
+  font-size: var(--fs-subhead);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 0.1rem;
+}
+.exp-company{ font-size: var(--fs-body); color: var(--text-muted); margin-bottom: 0.45rem; }
+.exp-desc{ margin-left: 1.1rem; font-size: var(--fs-body); line-height: 1.5; color: var(--text-muted); }
+.exp-desc li{ margin-bottom: 0.3rem; }
+
+/* ===================== EXPERIENCE: SOLAR SYSTEM ===================== */
+#journey{ padding: 0.5rem 0 2rem; }
+
+.solar-system{
+  position: relative;
+  width: min(600px, 92vw);
+  height: min(600px, 92vw);
+  margin: 2.5rem auto 1rem;
 }
 
-.exp-logo{
-  width: 70px;
-  height: 70px;
+.sun{
+  position:absolute;
+  top:50%; left:50%;
+  transform: translate(-50%,-50%);
+  max-width: 78px;
+  text-align:center;
+  z-index: 3;
+}
+.sun-label{
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.orbit{
+  position:absolute;
+  top:50%; left:50%;
+  border-radius:50%;
+  border: 1px dashed var(--border-strong);
+  transform: translate(-50%,-50%);
+}
+
+/* inner -> outer, around the "ML & Robotics" center: Bahria, Abyss, (UW+Rogers+Keysight), Cobionix, Apple */
+.orbit-1{ width:26%;  height:26%;  animation: spin-cw  14s linear infinite; }
+.orbit-2{ width:44%;  height:44%;  animation: spin-ccw 20s linear infinite; }
+.orbit-3{ width:62%;  height:62%;  animation: spin-cw  28s linear infinite; }
+.orbit-4{ width:82%;  height:82%;  animation: spin-ccw 36s linear infinite; }
+.orbit-5{ width:100%; height:100%; animation: spin-cw  44s linear infinite; }
+
+.orbit-1 .planet{ animation: spin-ccw 14s linear infinite; }
+.orbit-2 .planet{ animation: spin-cw  20s linear infinite; }
+.orbit-3 .planet{ animation: spin-ccw 28s linear infinite; }
+.orbit-4 .planet{ animation: spin-cw  36s linear infinite; }
+.orbit-5 .planet{ animation: spin-ccw 44s linear infinite; }
+
+@keyframes spin-cw{
+  from{ transform: translate(-50%,-50%) rotate(0deg); }
+  to{   transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes spin-ccw{
+  from{ transform: translate(-50%,-50%) rotate(0deg); }
+  to{   transform: translate(-50%,-50%) rotate(-360deg); }
+}
+
+.planet{
+  position:absolute;
+  top:0; left:50%;
+  width: clamp(36px, 8vw, 58px);
+  height: clamp(36px, 8vw, 58px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px var(--shadow);
+  z-index: 2;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.planet:hover{
+  box-shadow: 0 12px 26px var(--shadow);
+}
+
+.planet img{
+  width: 62%;
+  height: 62%;
   object-fit: contain;
 }
 
-.exp-date, .exp-location{
-  font-size: 0.95rem;
-  color:#555;
+/* three planets sharing orbit-3 (UW, Rogers, Keysight), spaced evenly around the ring */
+.orbit-3 .planet-b{ top:75%; left:93%; }
+.orbit-3 .planet-c{ top:75%; left:7%; }
+
+/* pause the motion on hover so logos are easy to click */
+.solar-system:hover .orbit,
+.solar-system:hover .planet{
+  animation-play-state: paused;
 }
 
-.exp-right{ flex: 1; min-width: 0; } /* prevents overflow */
-.exp-role{
-  font-weight: 600;
-  font-size: 1.15rem;
-  margin-bottom: 0.2rem;
+@media (prefers-reduced-motion: reduce){
+  .orbit, .planet{ animation: none !important; }
 }
-.exp-company{
-  color:#444;
-  margin-bottom: 0.7rem;
-}
-.exp-desc{
-  margin-left: 1.2rem;
-  line-height: 1.65;
-}
-.exp-desc li{ margin-bottom: 0.35rem; }
 
 /* ===================== RESEARCH ===================== */
 #research{ padding: 0.5rem 0 1.2rem; }
@@ -443,57 +717,43 @@ p { color: rgb(70,70,70); }
   margin-bottom: 1.2rem;
 }
 
-.filters{
-  display:flex;
-  justify-content:center;
-  gap: 0.7rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.4rem;
-}
-
-.filter-btn{
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.18);
-  background: #fff;
-  cursor:pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
-  min-height: 40px;
-}
-.filter-btn:hover{ background: rgba(0,0,0,0.05); }
-.filter-btn.active{
-  background:#111;
-  color:#fff;
-  border-color:#111;
-}
-
 .research-box{
   display:grid;
-  grid-template-columns: minmax(340px, 410px) 1fr;
-  gap: 1.7rem;
+  grid-template-columns: 240px 1fr;
+  gap: 1.3rem;
   align-items:center;
-  padding: 1.6rem 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, background 200ms ease;
+}
+.research-box:hover{
+  border-color: var(--border);
+  background: var(--surface-strong);
+  box-shadow: 0 14px 34px -22px var(--shadow-strong);
+  transform: translateY(-2px);
 }
 
 .project-thumb-lg{
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 16px;
+  border-radius: 10px;
   object-fit: cover;
-  border: 1px solid rgba(0,0,0,0.10);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px var(--shadow);
 }
 
 .project-title{
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: var(--fs-subhead);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
 }
 
 .project-desc{
-  line-height: 1.65;
-  margin-bottom: 0.9rem;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
 }
 
 .project-btn-row{
@@ -510,7 +770,7 @@ p { color: rgb(70,70,70); }
 .contact-info-upper-container{
   margin-top: 1.2rem;
   padding: 1rem 1rem;
-  border: 1px solid rgba(0,0,0,0.12);
+  border: 1px solid var(--border);
   border-radius: 16px;
   display:flex;
   justify-content:center;
@@ -523,6 +783,8 @@ p { color: rgb(70,70,70); }
   align-items:center;
   gap: 0.6rem;
 }
+.contact-info-container p,
+.contact-info-container a{ font-size: var(--fs-body); }
 
 .email-icon{ width: 34px; height: 34px; }
 
@@ -530,4 +792,291 @@ footer{
   padding: 1.5rem 0 2.2rem;
   text-align:center;
   color:#666;
+  font-size: var(--fs-meta);
+}
+
+/* ===================== POLISH: STICKY NAV, ANCHORS, FOCUS ===================== */
+/* Keep the navigation reachable while scrolling, with a full-width translucent bar
+   behind the centered nav content. Preserves the existing monochrome look. */
+#desktop-nav,
+#hamburger-nav{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+#desktop-nav::before,
+#hamburger-nav::before{
+  content:"";
+  position:absolute;
+  top:0; bottom:0; left:50%;
+  width:100vw;
+  transform:translateX(-50%);
+  background: var(--surface);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index:-1;
+}
+
+/* Anchor links land below the sticky bar instead of hidden beneath it */
+section[id]{ scroll-margin-top: 84px; }
+
+/* Visible keyboard focus for accessibility (only shows for keyboard users) */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.mini-btn:focus-visible,
+.filter-btn:focus-visible,
+.theme-toggle:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Subtle lift on research thumbnails for a more polished feel */
+.research-media{ overflow: hidden; border-radius: 16px; position: relative; }
+.project-thumb-lg{ transition: transform 320ms ease; }
+.research-box:hover .project-thumb-lg{ transform: scale(1.03); }
+
+/* Clickable media: whole thumbnail links to the project's video/resource */
+.media-link{ display: block; position: relative; cursor: pointer; }
+.media-link:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Play badge on video thumbnails */
+.research-media.has-video .media-link::before{
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  z-index: 2;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='black' fill-opacity='0.55'/><polygon points='40,30 40,70 72,50' fill='white'/></svg>")
+    center / contain no-repeat;
+  opacity: 0.9;
+  transition: transform 220ms ease, opacity 220ms ease;
+  pointer-events: none;
+}
+/* Gentle darken on hover so the play badge pops */
+.research-media.has-video .media-link::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.0);
+  transition: background 220ms ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.media-link:hover::before,
+.media-link:focus-visible::before{ transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+.research-media.has-video .media-link:hover::after,
+.research-media.has-video .media-link:focus-visible::after{ background: rgba(0,0,0,0.18); }
+
+@media (prefers-reduced-motion: reduce){
+  .project-thumb-lg{ transition: none; }
+  .research-box:hover .project-thumb-lg{ transform: none; }
+  .media-link::before{ transition: none; }
+}
+
+/* ===================== TOP-CLASS DESIGN SYSTEM POLISH ===================== */
+
+/* Brand mark in nav picks up the display font + an accent dot */
+.logo{ font-family: var(--font-display); letter-spacing: -0.02em; }
+#desktop-nav .logo::after{
+  content:"";
+  display:inline-block;
+  width: 7px; height: 7px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: middle;
+}
+
+/* Nav link hover → accent underline instead of gray */
+.nav-links a{ position: relative; font-weight: 500; }
+.nav-links a:hover{ color: var(--text); border-bottom: none; }
+.nav-links a::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-4px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+.nav-links a:hover::after{ transform: scaleX(1); }
+
+/* Generous, consistent vertical rhythm between major sections */
+#about, #research, #experience, #journey, #contact{ padding-top: 2.4rem; padding-bottom: 2.4rem; }
+
+/* Hero focus/expertise chips */
+.hero-focus{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.9rem 0 0.2rem;
+}
+.focus-chip{
+  font-family: var(--font-display);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+body.dark-mode .focus-chip{ color: var(--accent-strong); }
+
+/* Research list: card rhythm instead of hard rules */
+.research-wrapper{ display:flex; flex-direction: column; gap: 0.4rem; }
+.research-wrapper > hr{ display:none; }
+
+/* Mini buttons adopt the system (accent ghost that fills on hover) */
+.mini-btn{
+  font-family: var(--font-display);
+  border-color: var(--border-strong) !important;
+  background: var(--surface-strong) !important;
+  color: var(--text) !important;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+.mini-btn:hover{
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+  transform: translateY(-1px);
+}
+
+/* Keep text readable when the (monochrome) accent is near-white in dark mode */
+body.dark-mode .btn-color-1,
+body.dark-mode .filter-btn.active{ color: #07090f; }
+body.dark-mode .mini-btn:hover{ color: #07090f !important; }
+body.dark-mode .focus-chip{ color: var(--accent-strong); }
+
+/* Scholar badge reads as a pill link */
+.scholar-badge{
+  flex-direction: row !important;
+  width: fit-content;
+  margin: 0.4rem auto 1.4rem !important;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-strong);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.scholar-badge:hover{ border-color: var(--accent); box-shadow: 0 10px 24px -14px var(--accent); }
+.scholar-badge p,
+.scholar-badge span{ font-weight: 600; font-size: var(--fs-meta); color: var(--text); }
+
+/* Row of profile shortcut pills (GitHub, Google Scholar) */
+.profile-badges{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 0.4rem 0 1.4rem;
+}
+.profile-badges .scholar-badge{ margin: 0 !important; }
+
+/* Contact card a touch more premium */
+.contact-info-upper-container{
+  background: var(--surface-strong);
+  box-shadow: 0 16px 40px -28px var(--shadow-strong);
+}
+
+/* Social icons: rounded hit area with hover lift */
+#socials-container .icon{
+  padding: 8px;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+#socials-container .icon:hover{
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 22px -12px var(--accent);
+}
+#socials-container{ gap: 0.7rem; }
+
+/* Divider uses token so it adapts to dark mode too */
+.section-divider{ border-top-color: var(--border); }
+
+/* Research-interest list in About */
+.interest-list{ margin: 0 0 0.9rem 1.1rem; font-size: var(--fs-body); line-height: 1.55; color: var(--text-muted); }
+.interest-list li{ margin-bottom: 0.15rem; }
+.interest-label{ font-weight: 600; color: var(--text); margin-bottom: 0.2rem !important; }
+
+/* About body copy emphasis */
+.about-text strong{ color: var(--text); font-weight: 600; }
+
+
+/* ===================== PRINT / SAVE-AS-PDF ===================== */
+@media print {
+  /* Always print on a clean light theme, regardless of dark mode */
+  :root,
+  :root[data-theme="dark"],
+  body.dark-mode{
+    --bg:#ffffff; --bg-tint:#ffffff; --surface:#ffffff; --surface-strong:#ffffff;
+    --text:#000000; --text-muted:#222222; --text-soft:#444444;
+    --border:rgba(0,0,0,0.28); --border-strong:rgba(0,0,0,0.35);
+    --shadow:rgba(0,0,0,0.12); --shadow-strong:rgba(0,0,0,0.18);
+    --accent:#000000; --accent-strong:#000000; --accent-soft:rgba(0,0,0,0.06);
+    --ring:rgba(0,0,0,0.4);
+  }
+  body, body.dark-mode{
+    background:#ffffff !important;
+    color:#000000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page{ margin: 14mm; }
+
+  /* Full width, no clipping */
+  .container{ width:100% !important; }
+
+  /* Hide interactive chrome that is useless in a PDF */
+  #desktop-nav, #hamburger-nav, .theme-toggle, .menu-links{ display:none !important; }
+
+  /* Flatten shadows and animations for crisp output */
+  *{ box-shadow:none !important; text-shadow:none !important; }
+  .orbit, .planet{ animation:none !important; }
+
+  a{ color:#000 !important; }
+
+  /* Keep logical blocks from splitting across pages */
+  .research-box, .exp-box, .edu-box, .tree-node, .about-image,
+  .solar-system, .contact-info-upper-container{
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1, h2, h3{ break-after: avoid; page-break-after: avoid; }
+  #about, #research, #experience, #journey, #contact{ padding-top:1rem !important; padding-bottom:1rem !important; }
+
+  /* Keep hero media a sensible size on paper */
+  .hero-photo{ max-width:240px !important; }
+  .about-pic{ width:min(240px,100%) !important; }
+
+  /* Keep the research list compact (small thumbnail + text), not full-width */
+  .research-box{
+    grid-template-columns: 170px 1fr !important;
+    gap: 1rem !important;
+    align-items: start !important;
+  }
+  .research-media{ align-self: center; }
+
+  /* Freeze the Journey orbits into a tidy static spread */
+  .orbit-1{ transform: translate(-50%,-50%) rotate(38deg) !important; }
+  .orbit-1 .planet{ transform: rotate(-38deg) !important; }
+  .orbit-2{ transform: translate(-50%,-50%) rotate(-42deg) !important; }
+  .orbit-2 .planet{ transform: rotate(42deg) !important; }
+  .orbit-4{ transform: translate(-50%,-50%) rotate(95deg) !important; }
+  .orbit-4 .planet{ transform: rotate(-95deg) !important; }
+  .orbit-5{ transform: translate(-50%,-50%) rotate(-100deg) !important; }
+  .orbit-5 .planet{ transform: rotate(100deg) !important; }
 }

@@ -35,23 +35,66 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") toggleMenu(true);
   });
-});
 
-/* ===================== RESEARCH FILTERS ===================== */
-const filterButtons = document.querySelectorAll(".filter-btn");
-const researchCards = document.querySelectorAll(".research-box");
+  /* ===================== THEME TOGGLE ===================== */
+  const themeButtons = Array.from(document.querySelectorAll(".theme-toggle"));
+  const themeKey = "preferredTheme";
 
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+  const getSavedTheme = () => localStorage.getItem(themeKey);
+  const getCurrentTheme = () => document.body.classList.contains("dark-mode") ? "dark" : "light";
 
-    const filter = btn.dataset.filter;
+  const updateThemeButtons = (theme) => {
+    themeButtons.forEach(button => {
+      const icon = theme === "dark" ? "☀️" : "🌙";
+      const label = theme === "dark" ? "Light" : "Dark";
+      button.querySelector(".theme-toggle__icon").textContent = icon;
+      button.querySelector(".theme-toggle__label").textContent = label;
+      button.setAttribute("aria-label", `Switch to ${label} mode`);
+    });
+  };
 
-    researchCards.forEach(card => {
-      const tags = (card.dataset.tags || "").split(" ").filter(Boolean);
-      const show = (filter === "all") || tags.includes(filter);
-      card.classList.toggle("hidden", !show);
+  const applyTheme = (theme) => {
+    document.body.classList.toggle("dark-mode", theme === "dark");
+    updateThemeButtons(theme);
+  };
+
+  const setTheme = (theme) => {
+    applyTheme(theme);
+    localStorage.setItem(themeKey, theme);
+  };
+
+  const initTheme = () => {
+    const savedTheme = getSavedTheme();
+    const theme = savedTheme || "light"; // ✅ always light by default for first-time visitors
+    applyTheme(theme);
+  };
+
+  initTheme();
+
+  themeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const newTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+      setTheme(newTheme);
     });
   });
 });
+
+
+/* ===================== PRINT / PDF: force lazy images to load ===================== */
+(function () {
+  function eagerLoadImages() {
+    document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+      img.loading = "eager";
+      if (img.decode) { try { img.decode().catch(function () {}); } catch (e) {} }
+    });
+  }
+  // Fired by the browser right before the print/Save-as-PDF dialog renders.
+  window.addEventListener("beforeprint", eagerLoadImages);
+  // Safari/Firefox path via matchMedia.
+  if (window.matchMedia) {
+    var mql = window.matchMedia("print");
+    if (mql.addEventListener) {
+      mql.addEventListener("change", function (e) { if (e.matches) eagerLoadImages(); });
+    }
+  }
+})();
