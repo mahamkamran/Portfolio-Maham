@@ -989,6 +989,33 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
 /* Professor links in About body copy: underlined, regular weight */
 .about-text p a{ font-weight: 400; }
 
+/* Research video: native aspect ratio, never cropped */
+.project-video{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px var(--shadow);
+  background: var(--surface-strong);
+}
+.research-box:hover .project-video{ transform: none; }
+
+/* Research contributions list inside a project card */
+.project-points-label{
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.1rem 0 0.15rem;
+}
+.project-points{
+  margin: 0 0 0.6rem 1.1rem;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.project-points li{ margin-bottom: 0.1rem; }
+
 /* About body copy emphasis */
 .about-text strong{ color: var(--text); font-weight: 600; }
 
