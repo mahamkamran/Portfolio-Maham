@@ -986,6 +986,9 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
 .interest-list li{ margin-bottom: 0.15rem; }
 .interest-label{ font-weight: 600; color: var(--text); margin-bottom: 0.2rem !important; }
 
+/* Professor links in About body copy: underlined, regular weight */
+.about-text p a{ font-weight: 400; }
+
 /* About body copy emphasis */
 .about-text strong{ color: var(--text); font-weight: 600; }
 
