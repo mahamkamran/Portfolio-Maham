@@ -986,6 +986,27 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
 .interest-list li{ margin-bottom: 0.15rem; }
 .interest-label{ font-weight: 600; color: var(--text); margin-bottom: 0.2rem !important; }
 
+/* Selected achievements: compact two-column cards */
+.achievement-grid{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+.achievement-grid li{
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface-strong);
+}
+.ach-title{ font-size: var(--fs-body); font-weight: 600; line-height: 1.3; color: var(--text); }
+.ach-meta{ font-size: var(--fs-meta); line-height: 1.3; color: var(--text-soft); }
+
 /* About body copy emphasis */
 .about-text strong{ color: var(--text); font-weight: 600; }
 

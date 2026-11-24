@@ -26,6 +26,7 @@
 }
 
 @media (max-width: 760px){
+  .achievement-grid{ grid-template-columns: 1fr; }
   .title{ font-size: 1.7rem; }
   .section__text__p2{ font-size: 1rem; }
 
