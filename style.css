@@ -568,51 +568,8 @@ body.dark-mode .tree-branch--end::after{ background: rgba(255,255,255,0.18); }
   color:#111;
 }
 
-/* ===================== EXPERIENCE ===================== */
-#experience{ padding: 0.5rem 0 2rem; }
-.exp-wrapper{ display:flex; flex-direction: column; gap: 0.4rem; margin-top: 1.2rem; }
-.exp-wrapper > hr{ display:none; }
-
-.exp-box{
-  display:grid;
-  grid-template-columns: 170px 1fr;
-  gap: 1.3rem;
-  align-items:start;
-  padding: 0.9rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 14px;
-  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, background 200ms ease;
-}
-.exp-box:hover{
-  border-color: var(--border);
-  background: var(--surface-strong);
-  box-shadow: 0 14px 34px -22px var(--shadow-strong);
-  transform: translateY(-2px);
-}
-.exp-left{
-  display:flex;
-  flex-direction: column;
-  align-items:center;
-  text-align:center;
-  gap: 0.25rem;
-}
-.exp-logo{ width: 56px; height: 56px; object-fit: contain; }
-.exp-date, .exp-location{ font-size: var(--fs-meta); color: var(--text-soft); line-height: 1.3; }
-.exp-right{ min-width: 0; }
-.exp-role{
-  font-family: var(--font-display);
-  font-size: var(--fs-subhead);
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--text);
-  margin-bottom: 0.1rem;
-}
-.exp-company{ font-size: var(--fs-body); color: var(--text-muted); margin-bottom: 0.45rem; }
-.exp-desc{ margin-left: 1.1rem; font-size: var(--fs-body); line-height: 1.5; color: var(--text-muted); }
-.exp-desc li{ margin-bottom: 0.3rem; }
-
 /* ===================== EXPERIENCE: SOLAR SYSTEM ===================== */
-#journey{ padding: 0.5rem 0 2rem; }
+#experience, #journey{ padding: 0.5rem 0 2rem; }
 
 .solar-system{
   position: relative;
@@ -690,6 +647,9 @@ body.dark-mode .tree-branch--end::after{ background: rgba(255,255,255,0.18); }
   height: 62%;
   object-fit: contain;
 }
+
+/* two planets sharing an orbit sit on opposite sides of the ring */
+.planet-opposite{ top:100%; }
 
 /* three planets sharing orbit-3 (UW, Rogers, Keysight), spaced evenly around the ring */
 .orbit-3 .planet-b{ top:75%; left:93%; }
@@ -1050,7 +1010,7 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
   a{ color:#000 !important; }
 
   /* Keep logical blocks from splitting across pages */
-  .research-box, .exp-box, .edu-box, .tree-node, .about-image,
+  .research-box, .edu-box, .tree-node, .about-image,
   .solar-system, .contact-info-upper-container{
     break-inside: avoid;
     page-break-inside: avoid;

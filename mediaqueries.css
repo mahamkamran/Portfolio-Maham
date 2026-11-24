@@ -23,9 +23,6 @@
   .edu-left{ width: 100%; justify-content:flex-start; }
 
   .research-box{ grid-template-columns: 1fr; }
-  .exp-box{ grid-template-columns: 1fr; gap: 0.6rem; }
-  .exp-left{ flex-direction: row; justify-content:flex-start; gap: 0.8rem; text-align:left; flex-wrap: wrap; }
-  .exp-logo{ width: 44px; height: 44px; }
 }
 
 @media (max-width: 760px){
