@@ -39,6 +39,7 @@
   .tree-top::before,
   .tree-branch{ display:none; } /* hide connector lines on mobile */
   .tree-bottom--split .tree-node{ margin-left: 0; }
+  .tree-bottom--split{ margin-top: 0.8rem; }
 
   .tree-node{
     width: 42%;
