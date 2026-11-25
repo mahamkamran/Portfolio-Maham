@@ -1084,3 +1084,64 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
   .orbit-4 .planet{ transform: rotate(100deg) !important; }
 }
 }
+
+
+/* ===================== RESEARCH LIGHTBOX ===================== */
+.lightbox-trigger{ cursor: zoom-in; }
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.82);
+  padding: 2vh 2vw;
+}
+.lightbox[hidden]{ display: none; }
+
+.lightbox__stage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 96vw;
+  max-height: 92vh;
+}
+
+.lightbox__media{
+  display: block;
+  max-width: 96vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;      /* keeps original aspect ratio */
+  border-radius: 8px;
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox__close{
+  position: absolute;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 160ms ease;
+}
+.lightbox__close:hover,
+.lightbox__close:focus-visible{ background: rgba(255,255,255,0.32); outline: 2px solid #fff; outline-offset: 2px; }
+
+body.lightbox-open{ overflow: hidden; }
+
+@media print{
+  .lightbox{ display: none !important; }
+}

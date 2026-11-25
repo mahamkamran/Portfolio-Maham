@@ -60,3 +60,109 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 })();
+
+
+/* ===================== RESEARCH LIGHTBOX ===================== */
+(function () {
+  var targets = Array.prototype.slice.call(
+    document.querySelectorAll(".research-media img, .research-media video")
+  );
+  if (!targets.length) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "lightbox";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Enlarged media");
+  overlay.hidden = true;
+
+  var closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "lightbox__close";
+  closeBtn.setAttribute("aria-label", "Close");
+  closeBtn.innerHTML = "&times;";
+
+  var stage = document.createElement("div");
+  stage.className = "lightbox__stage";
+
+  overlay.appendChild(closeBtn);
+  overlay.appendChild(stage);
+  document.body.appendChild(overlay);
+
+  var openSource = null;   // the inline element that opened the lightbox
+  var resumeSource = false; // whether to resume an inline video on close
+
+  function open(source) {
+    var media;
+    if (source.tagName === "VIDEO") {
+      media = document.createElement("video");
+      media.src = source.currentSrc || source.src;
+      media.autoplay = true;
+      media.loop = true;
+      media.controls = true;
+      media.playsInline = true;
+      media.muted = true; // reliable autoplay on mobile; users can unmute via controls
+      media.currentTime = source.currentTime || 0;
+      resumeSource = !source.paused;
+      source.pause(); // avoid decoding the same 4K video twice
+    } else {
+      media = document.createElement("img");
+      media.src = source.currentSrc || source.src;
+      media.alt = source.alt || "";
+    }
+    media.className = "lightbox__media";
+    stage.innerHTML = "";
+    stage.appendChild(media);
+
+    openSource = source;
+    overlay.hidden = false;
+    document.body.classList.add("lightbox-open");
+    closeBtn.focus();
+    if (media.tagName === "VIDEO") {
+      var p = media.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+  }
+
+  function close() {
+    if (overlay.hidden) return;
+    var v = stage.querySelector("video");
+    if (v) v.pause();
+    stage.innerHTML = "";
+    overlay.hidden = true;
+    document.body.classList.remove("lightbox-open");
+    if (openSource) {
+      if (openSource.tagName === "VIDEO" && resumeSource) {
+        var p = openSource.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      openSource.focus();
+    }
+    openSource = null;
+    resumeSource = false;
+  }
+
+  targets.forEach(function (el) {
+    el.classList.add("lightbox-trigger");
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+    if (!el.getAttribute("aria-label")) {
+      el.setAttribute("aria-label", (el.alt || "Research media") + " (click to enlarge)");
+    }
+    el.addEventListener("click", function (e) { e.preventDefault(); open(el); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(el); }
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+
+  // Click on the dimmed background (not on the media itself) closes the view
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay || e.target === stage) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+})();
