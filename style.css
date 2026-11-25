@@ -616,6 +616,7 @@ body.dark-mode .stem-lakehead{ background: rgba(255,255,255,0.18); }
 }
 
 .orbit{
+  pointer-events: none;   /* rings never block clicks on the logos beneath/inside them */
   position:absolute;
   top:50%; left:50%;
   border-radius:50%;
@@ -644,6 +645,7 @@ body.dark-mode .stem-lakehead{ background: rgba(255,255,255,0.18); }
 }
 
 .planet{
+  pointer-events: auto;   /* logos stay clickable while the orbits turn */
   position:absolute;
   top:0; left:50%;
   width: clamp(36px, 8vw, 58px);
