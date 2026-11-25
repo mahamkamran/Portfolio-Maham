@@ -20,7 +20,7 @@
     flex-direction: column;
     gap: 0.8rem;
   }
-  .edu-left{ width: 100%; justify-content:flex-start; }
+  .edu-left{ width: 100%; flex-direction: row; align-items: center; justify-content:flex-start; gap: 0.8rem; }
 
   .research-box{ grid-template-columns: 1fr; }
 }
