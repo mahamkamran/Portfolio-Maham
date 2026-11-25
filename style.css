@@ -1087,7 +1087,10 @@ body.dark-mode .focus-chip{ color: var(--accent-strong); }
 
 
 /* ===================== RESEARCH LIGHTBOX ===================== */
-.lightbox-trigger{ cursor: zoom-in; }
+.lightbox-trigger,
+.lightbox-card{ cursor: zoom-in; }
+.lightbox-card a,
+.lightbox-card button{ cursor: pointer; }
 
 .lightbox{
   position: fixed;

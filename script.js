@@ -149,9 +149,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!el.getAttribute("aria-label")) {
       el.setAttribute("aria-label", (el.alt || "Research media") + " (click to enlarge)");
     }
-    el.addEventListener("click", function (e) { e.preventDefault(); open(el); });
     el.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(el); }
+    });
+  });
+
+  // Whole research card is clickable. Links and buttons (e.g. Journal Publication)
+  // keep their own behaviour, and dragging to select text does not open the lightbox.
+  Array.prototype.slice.call(document.querySelectorAll(".research-box")).forEach(function (card) {
+    var media = card.querySelector(".research-media img, .research-media video");
+    if (!media) return;
+    card.classList.add("lightbox-card");
+    card.addEventListener("click", function (e) {
+      if (e.target.closest("a, button")) return;
+      var sel = window.getSelection && window.getSelection();
+      if (sel && String(sel).length) return;
+      open(media);
     });
   });
 
